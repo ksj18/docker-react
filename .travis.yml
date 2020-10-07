@@ -4,7 +4,8 @@ services:
   - docker
 
 before_install:
-  - docker build -f ./dockerfile.dev -t a6596509538/docker_react_frontend:latest.dev .
+  # - docker build -f ./dockerfile.dev -t a6596509538/docker_react_frontend:latest.dev .
+    - docker build -t a6596509538/docker_react_frontend:latest .
 
 script:
   - docker run -e CI=true a6596509538/docker_react_frontend:latest.dev npm run test -- --coverage
