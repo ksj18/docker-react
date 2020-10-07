@@ -8,7 +8,7 @@ before_install:
     - docker build -t a6596509538/docker_react_frontend:latest .
 
 script:
-  - docker run -e CI=true a6596509538/docker_react_frontend:latest.dev npm run test -- --coverage
+  - docker run -e CI=true a6596509538/docker_react_frontend:latest npm run test -- --coverage
 
 
 deploy:
