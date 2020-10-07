@@ -1,20 +1,10 @@
 FROM node:alpine
-WORKDIR /app
-COPY ./package.json .
-RUN npm install 
+WORKDIR '/app'
+COPY package*.json ./
+RUN npm install
 COPY . .
-EXPOSE 8080/tcp
-CMD ["npm", "run", "start"]
+RUN npm run build
 
-
-# FROM node:alpine
-# WORKDIR '/app'
-# COPY ./package*.json ./
-# RUN npm install 
-# COPY ./ ./ 
-# RUN npm run build
-
-# FROM nginx
-# EXPOSE 80/tcp
-# COPY --from=0 /app/build  /usr/share/nginx/html
-
+FROM nginx
+EXPOSE 80
+COPY --from=0 /app/build /usr/share/nginx/html
